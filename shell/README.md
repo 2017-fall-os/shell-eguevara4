@@ -11,6 +11,11 @@ Before the prompt is given however, the shell tokenizes the PATH variable so it 
 Once a command is entered the program will use the function mytoc() to return a double pointer containing all the tokens in the input command.
 The first token in the double pointer is used as the command and the following tokens as the arguments.
 The shell first tests if the first token is a valid command by trying to execute it. If it fails it then concatinates the paths tokenized to the beginning of the command. It then tries again. When all paths are exhausted and no command executed properly then the shell prints 'Command not found'.
+The pipe function parses the command and finds a the '|' character. If one is found it gets the first command before the '|' and runs it.
+The output of this command then becomes input for the second command. The one after the '|' character.
+When wanting to run a background task the program first looks for the '&' symbol at the end of the command.
+If the symbol is found then the command runs normally but in a child. The parent process does not wait for the child process to return.
+The cd command works by geting the PWD environment variable and adding successfull paths to it. If a chdir() call is unsuccessfull the program prints an error and does not store the successful path.
 To exit the shell enter 'exit'.
 
 # Files in directory
@@ -22,6 +27,14 @@ The strCmp() function compares two string from the beginning until the number of
 The subStr2() function is the same as subStr() in mytoc.c except that it terminates the string with a newline character. This is done so the tokenizer can recognize the end of an input.
 The strConcat() function is used to concatinate two string and add a '/' character in the middle. This function is used to create a proper path using the paths in the PATH variable.
 The function myStrCmp() was derived from code found at https://stackoverflow.com/questions/22973670/creating-my-own-strcmp-function-in-c. 
+
+stringHelper.c
+
+This file contains various functions used to manipulate or aquire information from a string.
+
+stringHelper.h
+
+Headerfiel for stringHelper.c.
 
 mytoc.c
 
